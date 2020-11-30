@@ -22,6 +22,9 @@
     border-radius: 20px;
     overflow: hidden;
   }
+  .userImage{
+    border: 5px solid white;
+  }
   .jumbotronCamera{
     color: #0073B1;
     margin-left: 7px;
@@ -42,8 +45,6 @@
     width: 150px;
     top: -100px;
     left: 20px;
-    border-radius: 50%;
-    overflow: hidden;
     /* transform: translate(20px,-90px); */
   }
   #profileSection #profileButtons{
@@ -125,57 +126,10 @@
     margin-right: 3px;
     margin-bottom: 6px;
   }
-  #about{
-    /* width: 100%; */
-    margin: 20px 0;
-    border:solid 1px #8f9294;
-    padding: 10px 24px;
-    display: flex;
-    justify-content: space-between;
-  }
-  #about p{
-    margin: 0;
-  }
-  #experiences{
-    /* width: 100%; */
-    margin: 20px 0;
-    border:solid 1px #8f9294;
-    padding: 10px 24px;
-    /* display: flex; */
-    /* justify-content: space-between; */
-  }
-  #experiences p{
-    margin: 0;
-  }
-  #experiences #header{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-  #experiences #content{
-    height: 100px;
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  #experiences #content img{
-    height: 56px;
-    width: 56px;
-  }
-  #experiences #experience{
-    display: flex;
-    padding: 5px 0;
-  }
-  #experiences #experience img{
-    margin-top: 7px;
-  }
-  #experiences #experience div:nth-of-type(2){
-    padding: 0 20px;
-    font-size: 14px;
-  }
-  #experiences #experience div:nth-of-type(2) p:first-of-type{
-    font-weight: 600;
-  }
-  #experiences #experience div:nth-of-type(2) p:nth-of-type(3){
-    color: #666666;
+
+  .sideBar>div{
+    background: white;
+    padding: 7px 7px;
+    border: solid 1px #8f9294;
+    border-radius: 5px;
   }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Container, Row, Col, Jumbotron,Button,Dropdown,DropdownButton, Image} from 'react-bootstrap'
 import {IconContext} from 'react-icons'
-import {FaCamera,FaEye} from 'react-icons/fa'
+import {FaCamera,FaEye, FaQuestionCircle} from 'react-icons/fa'
 import {RiPencilLine} from 'react-icons/ri'
 import '../style/ProfilePage.css'
 
@@ -27,7 +27,7 @@ render(){
     return(
         <Container className='mt-5 pt-3'>
           <Row>
-            <Col className="col-10">
+            <Col className="col-9">
                 <Jumbotron>
                     <div className='bgImage'>
                     <img src="https://miro.medium.com/max/1124/1*92adf06PCF91kCYu1nPLQg.jpeg" alt=""/>
@@ -37,7 +37,7 @@ render(){
                     </div>
                     <div id='profileSection'>
                     <div style={{cursor: 'pointer'}}>
-                        <img src={this.state.user.image} alt={this.state.user.name + 'image'}/>
+                        <Image className='userImage' src={this.state.user.image} alt={this.state.user.name + 'image'} roundedCircle/>
                     </div>
                     <div id='profileButtons'>
                         <DropdownButton id="dropdown-basic-button" title="Add profile section">
@@ -78,6 +78,17 @@ render(){
                     <p>All LinkedIn members</p>
                     </div>
                 </Jumbotron>
+            </Col>
+            <Col className='col-3 sideBar'>
+            <div className='mb-3'>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <span>Edit public profile & URL</span><FaQuestionCircle />
+                    </div>
+                    <hr className='my-3'/>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <span>Add profile in another language</span><FaQuestionCircle />
+                    </div>
+                </div>
             </Col>
           </Row>
         </Container>
