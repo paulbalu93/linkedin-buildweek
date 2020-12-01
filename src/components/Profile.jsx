@@ -36,6 +36,7 @@ class Profile extends Component {
      }
 
      async fetchExperience() {
+        
         let response= await fetch(process.env.REACT_APP_BASE_URL + `/profile/${this.state.user._id}/experiences`,{
             headers: new Headers({
                 'Authorization': `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
@@ -88,6 +89,12 @@ class Profile extends Component {
           console.log(err);
         }
       };
+
+    //   componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.experiences !== this.state.experiences) {
+    //       console.log('pokemons state has changed.')
+    //     }
+    //   }
 
 
 render(){
@@ -148,7 +155,7 @@ render(){
                         </div>
                     </Jumbotron>
                 </Col>
-                <Col className='col-3 sideBar'>
+                <Col className='col-3 sideBar' style={{margin:0}}>
                 <div className='mb-3'>
                         <div className='d-flex justify-content-between align-items-center'>
                             <span>Edit public profile & URL</span><FaQuestionCircle />
@@ -168,11 +175,10 @@ render(){
                             <HiOutlinePlus onClick={()=> {this.setState({show: true})}}/>
                         </div>
                         {this.state.experiences.map((e) => {
-                            console.log(e)
                             return(
                                 <>
-                                <Experience data={e} key={this.state.experiences._id} userID={this.state.user._id} fetchExperience={this.fetchExperience} />
-                                {this.state.experiences.length > 1 ? <hr /> : <></>}
+                                <Experience data={e} userID={this.state.user._id} fetchExperience={this.fetchExperience} />
+                                {this.state.experiences.length > 1 ? <hr/> : <></>}
                                 </>
                             )
                         })}

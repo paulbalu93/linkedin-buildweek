@@ -43,7 +43,6 @@ class Experience extends React.Component {
             }
           });
           if (response.ok) {
-            this.props.fetchExperience();
             this.setState({
                 showEditModal: false,
               exp: {
@@ -55,6 +54,7 @@ class Experience extends React.Component {
                 area: ""
                 }
             });
+            this.props.fetchExperience()
           } else {
             let json = await response.json();
             console.log(json)
@@ -75,8 +75,8 @@ class Experience extends React.Component {
    
     )
     if(response.ok){
-    
-        this.props.fetchExperience();
+        this.setState({showEditModal: false, showDeleteModal: false})
+        this.props.ifUpdated();
     }    
     }
 
