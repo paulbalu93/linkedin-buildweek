@@ -133,3 +133,24 @@
     border: solid 1px #8f9294;
     border-radius: 5px;
   }
+
+  .experiences{
+    background: white;
+    border:solid 1px #8f9294;
+    border-radius: 5px;
+    padding: 5px 14px;
+  }
+
+  .experienceInfo p{
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .experienceInfo p.company{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .experienceInfo p.dateAndArea{
+    color: rgba(0, 0, 0, 0.6);
+  }
