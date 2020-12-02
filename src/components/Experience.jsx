@@ -76,7 +76,7 @@ class Experience extends React.Component {
     )
     if(response.ok){
         this.setState({showEditModal: false, showDeleteModal: false})
-        this.props.ifUpdated();
+        this.props.fetchExperience()
     }    
     }
 
@@ -151,7 +151,7 @@ class Experience extends React.Component {
                 </Modal.Body>
                 <Modal.Footer>
                 <div className="w-100 d-flex justify-content-between">
-                    <Button variant="danger" onClick={() => this.setState({ showDeleteModal: true})}>
+                    <Button variant="danger" onClick={() => this.setState({ showDeleteModal: true, showEditModal:false})}>
                         Delete
                     </Button>
                     <Button variant="success" onClick={this.editExperience}>
@@ -160,17 +160,17 @@ class Experience extends React.Component {
                 </div>
                 </Modal.Footer>
             </Modal>
-            <Modal show={this.state.showDeleteModal} onHide={() => this.setState({ showDeleteModal: false})} >
+            <Modal size="sm" backdrop="static" show={this.state.showDeleteModal} onHide={() => this.setState({ showDeleteModal: false, showEditModal: true})} >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Delete experience</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>Modal body text goes here.</p>
+                    <p>Are you sure you want to permanently remove this experience from FlinkedIn?</p>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.setState({ showDeleteModal: false})}>Close</Button>
+                    <Button variant="secondary" onClick={() => this.setState({ showDeleteModal: false, showEditModal: true})}>Close</Button>
                     <Button variant="danger" onClick={this.deleteExperience}>Delete</Button>
                 </Modal.Footer>
             </Modal>
