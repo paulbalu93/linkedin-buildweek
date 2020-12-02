@@ -35,7 +35,7 @@ class Profile extends Component {
         this.fetchExperience()
      }
 
-     async fetchExperience() {
+    fetchExperience = async() =>{
         
         let response= await fetch(process.env.REACT_APP_BASE_URL + `/profile/${this.state.user._id}/experiences`,{
             headers: new Headers({
