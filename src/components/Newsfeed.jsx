@@ -29,7 +29,7 @@ class Newsfeed extends React.Component {
         this.fetchPosts();
      }
 
-     updateNewPostField = input => {
+    updateNewPostField = input => {
         let newPost = {...this.state.newPost};
         let currentId = input.currentTarget.id;
         newPost[currentId] = input.currentTarget.value;
