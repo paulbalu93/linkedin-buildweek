@@ -83,17 +83,24 @@ class Feed extends React.Component{
                 <div className='singleFeed mb-2'>
                     <Row>
                         <Col className='col-2'>
-                            <Image src={this.props.feed.user.image} style={{width: "80%"}} roundedCircle />
+                            <Image src={this.props.feed.user.image} style={{width: "80%",overflow: "hidden"}} roundedCircle />
                         </Col>
                         <Col className='col-9 d-flex align-items-center'>
-                            <h5>{this.props.feed.user.name} {this.props.feed.user.surname}</h5>
+                            <h5 className='usersNames'>{this.props.feed.user.name} {this.props.feed.user.surname}</h5>
                         </Col>
                         {this.props.feed.user._id === this.props.userID ? 
                         <Col className='col-1'>
                             <RiPencilLine onClick={this.singlePost}/>
                         </Col>:<></>}
                     </Row>
-                    <p>{this.props.feed.text}</p>
+                    <Row>
+                        <Col><p>{this.props.feed.text}</p></Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            
+                        </Col>
+                    </Row>
                 </div>
                 <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
                     <Modal.Header closeButton>
