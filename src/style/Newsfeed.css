@@ -105,3 +105,8 @@
     padding: 10px;
     border-radius: 10px;
 }
+
+.usersNames:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
