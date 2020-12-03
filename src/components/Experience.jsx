@@ -7,7 +7,8 @@ class Experience extends React.Component {
     state={
         showEditModal: false,
         exp:[],
-        showDeleteModal: false
+        showDeleteModal: false,
+        showExpPicture: false
     }
 
     singleExperience = async() => {
@@ -81,12 +82,12 @@ class Experience extends React.Component {
     }
 
     render(){
-        console.log("User ID",this.props.userID)
+        console.log("User ID",this.props.data.image)
         return(
             <>
                 <Row>
                     <Col className='col-2'>
-                        <Image src={this.props.data.image} />
+                        {this.props.data.image ? <Image style={{width: '100%', cursor: 'pointer'}} onClick={() => this.setState({ showExpPicture: true })} src={this.props.data.image} />: <Image style={{width: '100%', cursor: 'pointer'}} src='https://kubalubra.is/wp-content/uploads/2017/11/default-thumbnail.jpg' onClick={() => this.setState({ showExpPicture: true })} />}
                     </Col>
                     <Col className='col-9 experienceInfo'>
                         <p className='company'>{this.props.data.company}</p>
@@ -173,6 +174,39 @@ class Experience extends React.Component {
                     <Button variant="secondary" onClick={() => this.setState({ showDeleteModal: false, showEditModal: true})}>Close</Button>
                     <Button variant="danger" onClick={this.deleteExperience}>Delete</Button>
                 </Modal.Footer>
+            </Modal>
+            <Modal
+                show={this.state.showExpPicture}
+                onHide={() => this.setState({ showExpPicture: false })}
+                >
+                <Modal.Header closeButton>
+                <Modal.Title>Edit picture</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Form>
+                    <Form.Group>
+                    <Form.File
+                        label="Example file input"
+                        onChange={
+                        (event) => {
+                            const formData = new FormData();
+                            formData.append("experience", event.target.files[0]);
+                            fetch( process.env.REACT_APP_BASE_URL + `/profile/${this.props.userID}/experiences/${this.props.data._id}/picture`,
+                                {
+                                method: "POST",
+                                body: formData,
+                                headers: {
+                                    'Authorization': `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+                                }
+                                }
+                                ).then(()=> {console.log('new picture was uploaded!')
+                                            this.setState({ showExpPicture: false })
+                                            this.props.fetchExperience()})
+                            }}                         
+                    />
+                    </Form.Group>
+                </Form>
+                </Modal.Body>
             </Modal>
             </>
         )
