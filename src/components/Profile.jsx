@@ -21,7 +21,8 @@ class Profile extends Component {
             area: ""
         },
         isLoading: false,
-        errMess: ""
+        errMess: "",
+        showPicture: false
     }
 
     componentDidMount=async()=>{
@@ -44,6 +45,7 @@ class Profile extends Component {
         })
         let experiences=await response.json()
         this.setState({experiences})
+        console.log("Updated experiences fetched!")
      }
 
      updateNewExperienceField = input => {
@@ -112,8 +114,8 @@ render(){
                         </IconContext.Provider>
                         </div>
                         <div id='profileSection'>
-                        <div style={{cursor: 'pointer'}}>
-                            <Image className='userImage' src={this.state.user.image} alt={this.state.user.name + 'image'} roundedCircle/>
+                        <div>
+                            <Image className='userImage' style={{cursor: 'pointer'}} src={this.state.user.image} alt={this.state.user.name + 'image'} onClick={() => this.setState({ showPicture: true })} roundedCircle/>
                         </div>
                         <div id='profileButtons'>
                             <DropdownButton id="dropdown-basic-button" title="Add profile section">
@@ -244,6 +246,38 @@ render(){
                     Add Experience
                 </Button>
                 </Modal.Footer>
+            </Modal>
+            <Modal
+                show={this.state.showPicture}
+                onHide={() => this.setState({ showPicture: false })}
+                >
+                <Modal.Header closeButton>
+                <Modal.Title>Edit picture</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <Form>
+                    <Form.Group>
+                    <Form.File
+                        label="Example file input"
+                        onChange={
+                        (event) => {
+                            const formData = new FormData();
+                            formData.append("profile", event.target.files[0]);
+                            fetch( process.env.REACT_APP_BASE_URL + `/profile/${this.state.user._id}/picture`,
+                                {
+                                method: "POST",
+                                body: formData,
+                                headers: {
+                                    'Authorization': `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`
+                                }
+                                }
+                                ).then(() => {this.setState({ showPicture: false })
+                                            this.componentDidMount()})
+                            }}                         
+                    />
+                    </Form.Group>
+                </Form>
+                </Modal.Body>
             </Modal>
         </>
     )
