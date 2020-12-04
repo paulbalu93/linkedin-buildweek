@@ -154,3 +154,30 @@
   .experienceInfo p.dateAndArea{
     color: rgba(0, 0, 0, 0.6);
   }
+
+  .footerItems{
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #0073b1;
+    font-weight: 600;
+  }
+
+  .footerA{
+      font-size: 0.9rem;
+      line-height: 2;
+      color: grey;
+      font-weight: 600;
+      list-style: none;
+      text-decoration: none;
+  }
+
+  .footerA:hover{
+    color: #0073b1;
+  }
+
+  .footerText{
+      font-size: 0.9rem;
+      line-height: 2;
+      color: grey;
+      font-weight: 600;
+  }

@@ -110,3 +110,29 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.buttonsOnPosts{
+    background: rgba(0, 0, 0, 0) !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    margin-right: 3px;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.buttonsOnPosts:hover{
+    background: rgba(0, 0, 0, 0.08) !important;
+}
+.buttonsOnPosts:focus{
+    box-shadow: none !important;
+}
+
+.accordionOnPosts{
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+.accordionOnPosts:focus{
+    outline: none !important;
+}

@@ -1,0 +1,24 @@
+.navbar .container {
+    padding: 0 15px !important;
+  }
+  
+  .navbar {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .navbar .navIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .linked {
+    width: 36px;
+    height: 36px;
+  }
+
+h5.usersNames{
+    color: rgba(0, 0, 0, 0.8);
+}

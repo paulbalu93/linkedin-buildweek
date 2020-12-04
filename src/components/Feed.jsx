@@ -1,9 +1,15 @@
 import React from 'react'
-import {Row, Col, Image, Modal, Form, Button} from 'react-bootstrap'
+import {Row, Col, Image, Modal, Form, Button,Accordion, Card} from 'react-bootstrap'
 import {RiPencilLine} from 'react-icons/ri'
 import {BiWorld} from 'react-icons/bi'
 import {IoMdArrowDropdown, IoMdDocument} from 'react-icons/io'
 import {ImVideoCamera, ImImage} from 'react-icons/im'
+import {Link} from 'react-router-dom'
+import { AiOutlineLike } from "react-icons/ai";
+import { GoComment } from "react-icons/go";
+import { RiShareForwardLine } from "react-icons/ri";
+import { FiSend } from "react-icons/fi";
+import { MdSend } from "react-icons/md"
 
 class Feed extends React.Component{
     state={
@@ -81,12 +87,12 @@ class Feed extends React.Component{
         return(
             <>
                 <div className='singleFeed mb-2'>
-                    <Row>
+                    <Row className='mb-3'>
                         <Col className='col-2'>
-                            <Image src={this.props.feed.user.image} style={{width: "80%",overflow: "hidden"}} roundedCircle />
+                            <Image src={this.props.feed.user.image} style={{width: "100%" ,overflow: "hidden"}} roundedCircle />
                         </Col>
                         <Col className='col-9 d-flex align-items-center'>
-                            <h5 className='usersNames'>{this.props.feed.user.name} {this.props.feed.user.surname}</h5>
+                            <Link to={`/profile/`+this.props.feed.user._id} className="nav-link navIcon"><h5 className='usersNames'>{this.props.feed.user.name} {this.props.feed.user.surname}</h5></Link>
                         </Col>
                         {this.props.feed.user._id === this.props.userID ? 
                         <Col className='col-1'>
@@ -98,7 +104,46 @@ class Feed extends React.Component{
                     </Row>
                     <Row>
                         <Col>
-                            
+                            <Image style={{width:'100%'}} src={this.props.feed.image} />
+                        </Col>
+                    </Row>
+                    <Row className='mt-2'>
+                        <Col>
+                            <Accordion>
+                                <Row className={"d-flex justify-content-flex-start align-items-center"}>
+                                    <Button className='buttonsOnPosts ml-3'>
+                                        <AiOutlineLike className='mr-1' /> Like
+                                    </Button>
+                                    <Accordion.Toggle
+                                        variant="link"
+                                        eventKey="0"
+                                        className='accordionOnPosts'
+                                    >
+                                    <Button className='buttonsOnPosts'>
+                                        <GoComment className='mr-1' /> Comment
+                                    </Button>
+                                    </Accordion.Toggle>
+                                    <Button className='buttonsOnPosts'>
+                                        <RiShareForwardLine className='mr-1' /> Share
+                                    </Button>
+                                    <Button className='buttonsOnPosts'>
+                                        <FiSend className='mr-1' /> Send
+                                    </Button>
+                                </Row>
+                                <Accordion.Collapse eventKey="0">
+                                    <Card.Body style={{paddingBottom:0, paddingTop:'10px'}}>
+                                        <div style={{ maxHeight: 400, overflowY: "scroll" }}>
+                                        {/* <Comments comments={props.post.comments}/> */}
+                                        </div>
+                                        <Form className='mt-2'>
+                                        <Form.Group controlId="exampleForm.ControlTextarea1" style={{position:'relative'}}>
+                                            <MdSend style={{position:'absolute', right:'5px', top:'35%', fontSize:'25px', cursor:'pointer'}}/>
+                                            <Form.Control as="textarea" rows={3} placeholder='Add new comment here of max 200 characters' style={{ borderRadius:'15px'}} maxLength='200' />
+                                        </Form.Group>
+                                        </Form>
+                                    </Card.Body>
+                                </Accordion.Collapse>
+                            </Accordion>
                         </Col>
                     </Row>
                 </div>

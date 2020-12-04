@@ -6,6 +6,9 @@ import {ImVideoCamera, ImCalendar, ImImage, ImFileText} from 'react-icons/im'
 import {BiWorld} from 'react-icons/bi'
 import {IoMdArrowDropdown, IoMdDocument} from 'react-icons/io'
 import Feed from './Feed'
+import NavBar from './NavBar'
+import ContentLoader from "react-content-loader"
+// import MiniProfile from './MiniProfile'
 
 class Newsfeed extends React.Component {
     state={
@@ -45,8 +48,8 @@ class Newsfeed extends React.Component {
                 'content-type': 'application/json'})
         })
         let allposts=await response.json();
-        let posts = allposts.reverse();
-        this.setState({posts})
+        let posts = allposts.reverse().slice(0,100);
+        this.setState({posts, isLoading: false})
      }
 
      submitNewPost = async e => {
@@ -82,25 +85,44 @@ class Newsfeed extends React.Component {
     render(){
         return(
             <>
-                <Container className='my-3'>
-                    <Row>
-                        <Col className='offset-2 col-7'>
-                                <div className='postFeed'>
-                                    <div className='buttonsDiv'>
-                                        <Button className='w-100 newPostButton d-flex justify-content-flex-start align-items-center' variant="outline-secondary" onClick={() => this.setState({showModal:true})}>
-                                        <HiOutlinePencilAlt className='mr-1 newPostPencil'/>Start a post</Button>
-                                    </div>
-                                    <div className='d-flex justify-content-around mt-1'>
-                                        <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImImage className='mr-1 symbolImage'/> Photo</div>
-                                        <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImVideoCamera className='mr-1 symbolCamera' /> Video</div>
-                                        <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImCalendar className='mr-1 symbolCalendar' /> Event</div>
-                                        <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImFileText className='mr-1 symbolArticke' /> Write article</div>
-                                    </div>
-    
+            <NavBar />
+            <Container className='mb-5' style={{marginTop: '65px'}}>
+                <Row>
+                    <Col className='col-2'>
+                        {/* <MiniProfile /> */}
+                    </Col>
+                    <Col className='col-7'>
+                            <div className='postFeed'>
+                                <div className='buttonsDiv'>
+                                    <Button className='w-100 newPostButton d-flex justify-content-flex-start align-items-center' variant="outline-secondary" onClick={() => this.setState({showModal:true})}>
+                                    <HiOutlinePencilAlt className='mr-1 newPostPencil'/>Start a post</Button>
                                 </div>
-                        </Col>
-                    </Row>
-                    <Row>
+                                <div className='d-flex justify-content-around mt-1'>
+                                    <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImImage className='mr-1 symbolImage'/> Photo</div>
+                                    <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImVideoCamera className='mr-1 symbolCamera' /> Video</div>
+                                    <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImCalendar className='mr-1 symbolCalendar' /> Event</div>
+                                    <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImFileText className='mr-1 symbolArticke' /> Write article</div>
+                                </div>
+                            </div>
+                    </Col>
+                </Row>
+                <Row>
+                    {this.state.isLoading ? <Col className='offset-2 col-7 d-flex justify-content-center'>
+                                                <ContentLoader
+                                                        speed={1}
+                                                        width={615}
+                                                        height={905}
+                                                        viewBox="0 0 615 905"
+                                                        backgroundColor="#f6f4f4"
+                                                        foregroundColor="#0073b1"
+                                                    >
+                                                        <rect x="0" y="0" rx="0" ry="0" width="615" height="295" />
+                                                        <rect x="0" y="305" rx="0" ry="0" width="615" height="295" />
+                                                        <rect x="0" y="610" rx="0" ry="0" width="615" height="295" />
+                                                </ContentLoader>
+                                            </Col> 
+                                            :
+                    <>
                         <Col className='offset-2 col-7'>
                             {this.state.posts.map((e)=>{
                                 return(
@@ -108,9 +130,10 @@ class Newsfeed extends React.Component {
                                 )
                             })}
                         </Col>
-                    </Row>
-                
-                </Container>
+                    </>}
+                </Row>
+            
+            </Container>
                 <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
                     <Modal.Header closeButton>
                         <Modal.Title>Create a post</Modal.Title>

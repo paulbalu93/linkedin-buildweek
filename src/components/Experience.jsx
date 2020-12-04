@@ -8,8 +8,19 @@ class Experience extends React.Component {
         showEditModal: false,
         exp:[],
         showDeleteModal: false,
-        showExpPicture: false
+        showExpPicture: false,
+        user:[]
     }
+
+    componentDidMount=async()=>{
+        let response= await fetch(process.env.REACT_APP_BASE_URL + `/profile/me`,{
+            headers: new Headers({
+                'Authorization': `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+                'content-type': 'application/json'})
+        })
+        let user=await response.json()
+        this.setState({user})
+     }
 
     singleExperience = async() => {
         let response= await fetch(process.env.REACT_APP_BASE_URL + `/profile/${this.props.userID}/experiences/${this.props.data._id}`,{
@@ -29,7 +40,7 @@ class Experience extends React.Component {
 
     
         this.setState({ exp });
-      };
+    };
 
     editExperience = async e => {
         e.preventDefault();
@@ -97,7 +108,7 @@ class Experience extends React.Component {
                         <p>{this.props.data.area}</p>
                     </Col>
                     <Col className='col-1'>
-                        <RiPencilLine onClick={this.singleExperience}/>
+                        {this.state.user._id === this.props.userID ? <RiPencilLine onClick={this.singleExperience}/>:<></>}
                     </Col>
                 </Row>
                 <Modal show={this.state.showEditModal} onHide={() => this.setState({ showEditModal: false,exp: {
