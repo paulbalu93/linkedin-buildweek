@@ -133,7 +133,7 @@ render(){
     return(
         <>
             <NavBar />
-            {this.state.isLoading ? <Container className='d-flex justify-content-center' style={{marginTop: '45px'}}>
+            {this.state.isLoading ? <Container className='d-flex justify-content-center' style={{marginTop: '65px'}}>
                                         <ContentLoader
                                                 speed={1}
                                                 width={1110}

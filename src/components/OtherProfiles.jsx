@@ -53,19 +53,20 @@ render(){
     return(
         <>
             <NavBar />
-            {this.state.isLoading ? <Container className='d-flex justify-content-center' style={{marginTop: '20vh'}}>
+            {this.state.isLoading ? <Container className='d-flex justify-content-center' style={{marginTop: '65px'}}>
                                         <ContentLoader
                                                 speed={1}
-                                                width={825}
-                                                height={400}
-                                                viewBox="0 0 825 400"
+                                                width={1110}
+                                                height={500}
+                                                viewBox="0 0 1110 500"
                                                 backgroundColor="#f6f4f4"
                                                 foregroundColor="#0073b1"
                                             >
-                                                <rect x="3" y="4" rx="0" ry="0" width="825" height="200" />
-                                                <circle cx="129" cy="196" r="70" />
-                                                <rect x="50" y="290" rx="0" ry="0" width="725" height="20" />
-                                                <rect x="100" y="330" rx="0" ry="0" width="625" height="20" />
+                                                <rect x="0" y="0" rx="0" ry="0" width="825" height="300" />
+                                                <rect x="840" y="0" rx="0" ry="0" width="250" height="80" />
+                                                <circle cx="129" cy="296" r="70" />
+                                                <rect x="50" y="390" rx="0" ry="0" width="725" height="20" />
+                                                <rect x="100" y="430" rx="0" ry="0" width="625" height="20" />
                                         </ContentLoader>
                                     </Container> 
                                     :
