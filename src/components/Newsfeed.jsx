@@ -104,33 +104,28 @@ class Newsfeed extends React.Component {
                                     <div className='py-3 px-2 mb-1 symbols d-flex align-items-center'><ImFileText className='mr-1 symbolArticke' /> Write article</div>
                                 </div>
                             </div>
-                    </Col>
-                </Row>
-                <Row>
-                    {this.state.isLoading ? <Col className='offset-2 col-7 d-flex justify-content-center'>
+                    {this.state.isLoading ?
                                                 <ContentLoader
                                                         speed={1}
-                                                        width={615}
+                                                        width={'630'}
                                                         height={905}
-                                                        viewBox="0 0 615 905"
+                                                        viewBox="0 0 630 905"
                                                         backgroundColor="#f6f4f4"
                                                         foregroundColor="#0073b1"
                                                     >
-                                                        <rect x="0" y="0" rx="0" ry="0" width="615" height="295" />
-                                                        <rect x="0" y="305" rx="0" ry="0" width="615" height="295" />
-                                                        <rect x="0" y="610" rx="0" ry="0" width="615" height="295" />
-                                                </ContentLoader>
-                                            </Col> 
+                                                        <rect x="5" y="0" rx="0" ry="0" width="630" height="295" />
+                                                        <rect x="5" y="305" rx="0" ry="0" width="630" height="295" />
+                                                        <rect x="5" y="610" rx="0" ry="0" width="630" height="295" />
+                                                </ContentLoader> 
                                             :
                     <>
-                        <Col className='offset-2 col-7'>
                             {this.state.posts.map((e)=>{
                                 return(
                                     <Feed feed={e} userID={this.state.user._id} key={e._id} fetchPosts={this.fetchPosts}/>
                                 )
                             })}
-                        </Col>
                     </>}
+                    </Col>
                 </Row>
             
             </Container>

@@ -136,3 +136,33 @@
 .accordionOnPosts:focus{
     outline: none !important;
 }
+
+.leftSidebarShadow{
+    transform: scale(1);
+    transition: ease 0.3s;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 20px !important;
+}
+  
+.leftSidebarShadow:hover{
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.75);
+    transform: scale(1.02);
+}
+
+.home{
+    border:solid 1px hsla(0, 0%, 0%, 0.08);
+    background-color: white;
+}
+/*
+.back{
+    height: 3em;
+    background:linear-gradient(to bottom,rgba(0,0,0,.75),rgba(0,0,0,0));
+}
+
+.first{
+    position: absolute;
+    max-width:45px !important;
+    left: 39%;
+    top: 1.5em;
+} */

@@ -103,7 +103,7 @@ class Experience extends React.Component {
                     <Col className='col-9 experienceInfo'>
                         <p className='company'>{this.props.data.company}</p>
                         <p>{this.props.data.role}</p>
-                        <p className='dateAndArea'>{this.props.data.startDate} - {this.props.data.endDate}</p>
+                        <p className='dateAndArea'>Start date: {this.props.data.startDate.slice(0,10)} End date: {this.props.data.endDate ? <>{this.props.data.endDate.slice(0,10)}</>:<>Current position!</>}</p>
                         <p className='dateAndArea'>{this.props.data.description}</p>
                         <p>{this.props.data.area}</p>
                     </Col>
